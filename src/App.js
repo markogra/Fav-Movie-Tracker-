@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import StarRating from "./StarRating";
+import { NavBar, Logo, Search, NumResults } from "./components/NavComponents";
 
 const KEY = "c28a22b8";
 
@@ -120,41 +121,8 @@ export default function App() {
   );
 }
 
-function NavBar({ children }) {
-  return <nav className="nav-bar"> {children}</nav>;
-}
-
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
-
-function Search({ query, setQuery }) {
-  return (
-    <input
-      className="search"
-      type="text"
-      placeholder="Search movies..."
-      value={query}
-      onChange={(e) => setQuery(e.target.value)}
-    />
-  );
-}
-
-function Logo() {
-  return (
-    <div className="logo">
-      <span role="img">🎥</span>
-      <h1>Fav Movie Tracker</h1>
-    </div>
-  );
-}
-
-function NumResults({ movies }) {
-  return (
-    <p className="num-results">
-      Found <strong>{movies.length}</strong> results
-    </p>
-  );
-}
 
 function Main({ children }) {
   return <main className="main">{children}</main>;

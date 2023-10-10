@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 import StarRating from "./StarRating";
 import { NavBar, Logo, Search, NumResults } from "./components/NavComponents";
 import Main from "./components/Main";
+import Box from "./components/Box";
+import { Loader, ErrorMessage } from "./components/Loader&Error";
+import MovieList from "./components/MovieComponents";
 
 const KEY = "c28a22b8";
 
@@ -121,48 +124,6 @@ export default function App() {
 const average = (arr) =>
   arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
-function Box({ children }) {
-  const [isOpen, setIsOpen] = useState(true);
-
-  return (
-    <div className="box">
-      <button className="btn-toggle" onClick={() => setIsOpen((open) => !open)}>
-        {isOpen ? "–" : "+"}
-      </button>
-      {isOpen && children}
-    </div>
-  );
-}
-
-function MovieList({ movies, onSelectMovie }) {
-  return (
-    <ul className="list list-movies">
-      {movies?.map((movie) => (
-        <Movie movie={movie} key={movie.imdbID} onSelectMovie={onSelectMovie} />
-      ))}
-    </ul>
-  );
-}
-
-function Movie({ movie, onSelectMovie }) {
-  return (
-    <li
-      onClick={() => {
-        onSelectMovie(movie.imdbID);
-      }}
-    >
-      <img src={movie.Poster} alt={`${movie.Title} poster`} />
-      <h3>{movie.Title}</h3>
-      <div>
-        <p>
-          <span>🗓</span>
-          <span>{movie.Year}</span>
-        </p>
-      </div>
-    </li>
-  );
-}
-
 function WatchedSummery({ watched }) {
   if (!watched) {
     return null;
@@ -239,19 +200,6 @@ function WatchedMovie({ movie, onDeleteWatched }) {
         </button>
       </div>
     </li>
-  );
-}
-
-function Loader() {
-  return <p className="loader">Loading...</p>;
-}
-
-function ErrorMessage({ message }) {
-  return (
-    <p className="error">
-      <span>⛔</span>
-      {message}
-    </p>
   );
 }
 

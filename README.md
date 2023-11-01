@@ -5,3 +5,7 @@ It utilizes the OMDb API for fetching real-time movie data.
 Data is saved to local storage, ensuring your movies preferences are preserved.
 
 To start the app, run 'npm start' in the project directory.
+
+# Screenshot
+
+![Screenshot of Fav Movie Project](./public/screenShotMovieTracker.png)
